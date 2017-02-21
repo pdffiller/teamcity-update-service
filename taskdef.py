@@ -52,7 +52,7 @@ class outData:
     def __init__(self):
         self.family = ""
         #self.taskDefinition = ""
-        self.containerDefinitions = containerDefinitions()
+        self.containerDefinitions = []
         self.volumes = []
 
 cd = containerDefinitions()
@@ -81,7 +81,7 @@ for env0 in data["containerDefinitions"][0]["environment"]:
 for pm in data["containerDefinitions"][0]["portMappings"]:
     cd.portMappings.append(pm)
 
-od.containerDefinitions = cd
+od.containerDefinitions.append(cd)
 
 pprint(jsonpickle.encode(od, unpicklable=False))
 
