@@ -1,7 +1,7 @@
 import json
 import jsonpickle
 
-with open('service.json') as data_file:
+with open('describe_service.json') as data_file:
     data = json.load(data_file)
 data = data["services"][0]
 
@@ -28,6 +28,6 @@ dc.minimumHealthyPercent = data["deploymentConfiguration"]["minimumHealthyPercen
 dc.maximumPercent = data["deploymentConfiguration"]["maximumPercent"]
 od.deploymentConfiguration = dc
 
-fileName = "service_" + od.service + ".json"
+fileName = "describe_service_" + od.service + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
