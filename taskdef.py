@@ -51,14 +51,14 @@ class deploymentConfiguration:
 class outData:
     def __init__(self):
         self.family = ""
-        self.taskDefinition = ""
+        #self.taskDefinition = ""
         self.containerDefinitions = containerDefinitions()
         self.volumes = []
 
 cd = containerDefinitions()
 od = outData()
 od.family = data["family"]
-od.taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
+taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
 
 v = volume()
 for vol in data["volumes"]:
@@ -85,7 +85,7 @@ od.containerDefinitions = cd
 
 pprint(jsonpickle.encode(od, unpicklable=False))
 
-fileName = "taskdef_" + od.taskDefinition + ".json"
+fileName = "taskdef_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
 
