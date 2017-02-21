@@ -83,8 +83,6 @@ for pm in data["containerDefinitions"][0]["portMappings"]:
 
 od.containerDefinitions.append(cd)
 
-pprint(jsonpickle.encode(od, unpicklable=False))
-
 fileName = "taskdef_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
