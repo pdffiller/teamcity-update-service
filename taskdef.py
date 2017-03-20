@@ -59,7 +59,7 @@ class outData:
 cd = containerDefinitions()
 od = outData()
 od.family = data["family"]
-od.networkMode = data["networkMode"]
+#od.networkMode = data["networkMode"]
 taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
 
 v = volume()
