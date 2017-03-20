@@ -2,7 +2,7 @@ import json
 import jsonpickle
 from pprint import pprint
 
-with open('describe_taskdefinition.json') as data_file:
+with open('taskdef.json') as data_file:
     data = json.load(data_file)
 data = data['taskDefinition']
 
@@ -85,7 +85,7 @@ for pm in data["containerDefinitions"][0]["portMappings"]:
 
 od.containerDefinitions.append(cd)
 
-fileName = "describe_taskdefinition_" + taskDefinition + ".json"
+fileName = "taskdef_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
 
