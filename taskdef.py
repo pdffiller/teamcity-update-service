@@ -51,7 +51,7 @@ class deploymentConfiguration:
 class outData:
     def __init__(self):
         self.family = ""
-        self.networkMode = ""
+        #self.networkMode = ""
         #self.taskDefinition = ""
         self.containerDefinitions = []
         self.volumes = []
