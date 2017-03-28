@@ -62,8 +62,8 @@ od.family = data["family"]
 #od.networkMode = data["networkMode"]
 taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
 
-v = volume()
 for vol in data["volumes"]:
+    v = volume()
     v.host.sourcePath = vol["host"]["sourcePath"]
     v.name = vol["name"]
     od.volumes.append(v)
