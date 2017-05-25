@@ -28,7 +28,7 @@ class logOptions:
 
 class logConfiguration:
     def __init__(self):
-        self.log_driver = "json-file"
+        self.logDriver = "json-file"
         self.options = []
 
 class env:
@@ -61,7 +61,7 @@ class containerDefinitions:
         self.portMappings = []
         self.logConfiguration = ""
         self.ulimits = []
-        self.dns = []
+        self.dnsServers = []
         self.hostname = ""
 
 class deploymentConfiguration:
@@ -102,12 +102,12 @@ if ("user" in data["containerDefinitions"][0]):
 cd.logConfiguration = logConfiguration()
 cd.logConfiguration.options = logOptions()
 if ("logConfiguration" in data["containerDefinitions"][0]):
-    cd.logConfiguration.log_driver = data["containerDefinitions"][0]["logConfiguration"]["logDriver"]
+    cd.logConfiguration.logDriver = data["containerDefinitions"][0]["logConfiguration"]["logDriver"]
     cd.logConfiguration.options.max_file = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-file"]
     cd.logConfiguration.options.max_size = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-size"]
 
-if ("dns" in data["containerDefinitions"][0]):
-    cd.dns = data["containerDefinitions"][0]["dnsServers"]
+if ("dnsServers" in data["containerDefinitions"][0]):
+    cd.dnsServers = data["containerDefinitions"][0]["dnsServers"]
 
 if ("ulimits" in data["containerDefinitions"][0]):
     cd.ulimits = ulimits()
