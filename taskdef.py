@@ -4,7 +4,7 @@ from pprint import pprint
 
 with open('taskdef.json') as data_file:
     data = json.load(data_file)
-data = data['taskDefinition']
+data = data["taskDefinition"]
 
 class host:
     def __init__(self):
@@ -28,7 +28,7 @@ class logOptions:
 
 class logConfiguration:
     def __init__(self):
-        self.log_driver = ""
+        self.log_driver = "json-file"
         self.options = []
 
 class env:
@@ -62,6 +62,7 @@ class containerDefinitions:
         self.logConfiguration = ""
         self.ulimits = []
         self.dns = []
+        self.hostname = ""
 
 class deploymentConfiguration:
     def __init__(self):
@@ -79,9 +80,10 @@ class outData:
 cd = containerDefinitions()
 od = outData()
 od.family = data["family"]
-od.networkMode = data["networkMode"]
-taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
 
+taskDefinition = data["taskDefinitionArn"][data["taskDefinitionArn"].find("/")+1:data["taskDefinitionArn"].rfind(":"):]
+if ("networkMode" in data):
+    od.networkMode = data["networkMode"]
 for vol in data["volumes"]:
     v = volume()
     v.host.sourcePath = vol["host"]["sourcePath"]
@@ -93,17 +95,24 @@ cd.image = data["containerDefinitions"][0]["image"]
 cd.cpu = data["containerDefinitions"][0]["cpu"]
 cd.memory = data["containerDefinitions"][0]["memory"]
 cd.essential = data["containerDefinitions"][0]["essential"]
-cd.user = data["containerDefinitions"][0]["user"]
+if ("hostname" in data["containerDefinitions"][0]):
+    cd.hostname = data["containerDefinitions"][0]["hostname"]
+if ("user" in data["containerDefinitions"][0]):
+    cd.user = data["containerDefinitions"][0]["user"]
 cd.logConfiguration = logConfiguration()
 cd.logConfiguration.options = logOptions()
-cd.logConfiguration.log_driver = data["containerDefinitions"][0]["logConfiguration"]["logDriver"]
-cd.logConfiguration.options.max_file = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-file"]
-cd.logConfiguration.options.max_size = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-size"]
-cd.ulimits = ulimits()
-cd.dns = data["containerDefinitions"][0]["dnsServers"]
+if ("logConfiguration" in data["containerDefinitions"][0]):
+    cd.logConfiguration.log_driver = data["containerDefinitions"][0]["logConfiguration"]["logDriver"]
+    cd.logConfiguration.options.max_file = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-file"]
+    cd.logConfiguration.options.max_size = data["containerDefinitions"][0]["logConfiguration"]["options"]["max-size"]
 
-for ul in data["containerDefinitions"][0]["ulimits"]:
-    cd.mountPoints.append(ul)
+if ("dns" in data["containerDefinitions"][0]):
+    cd.dns = data["containerDefinitions"][0]["dnsServers"]
+
+if ("ulimits" in data["containerDefinitions"][0]):
+    cd.ulimits = ulimits()
+    for ul in data["containerDefinitions"][0]["ulimits"]:
+        cd.mountPoints.append(ul)
 
 for mpN in data["containerDefinitions"][0]["mountPoints"]:
     cd.mountPoints.append(mpN)
