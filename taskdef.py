@@ -24,7 +24,7 @@ class portMappings:
 class logOptions:
     def __init__(self):
         self.max_size = "1m"
-        self.max_file = 1
+        self.max_file = "1"
 
 class logConfiguration:
     def __init__(self):
