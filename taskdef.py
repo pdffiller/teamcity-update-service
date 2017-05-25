@@ -2,7 +2,7 @@ import json
 import jsonpickle
 from pprint import pprint
 
-with open('taskdef.json') as data_file:
+with open('describe_taskdefinition.json') as data_file:
     data = json.load(data_file)
 data = data["taskDefinition"]
 
@@ -127,7 +127,7 @@ od.containerDefinitions.append(cd)
 
 pprint(jsonpickle.encode(od, unpicklable=False))
 
-fileName = "taskdef_" + taskDefinition + ".json"
+fileName = "describe_taskdefinition_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
 
