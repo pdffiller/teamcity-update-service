@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @vgaivoronskyi
- Sign out
- Watch 6
-  Star 0
- Fork 0 pdffiller/teamcity-update-service
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
-Tree: 79181364cf Find file Copy pathteamcity-update-service/taskdef.py
-7918136  on 28 Mar
-@vgaivoronskyi vgaivoronskyi fix for volumes
-1 contributor
-RawBlameHistory     
-93 lines (73 sloc)  2.31 KB
 import json
 import jsonpickle
 from pprint import pprint
