@@ -6,10 +6,10 @@ with open('describe_taskdefinition.json', 'r') as myfile:
 
 je = jsontree.JSONTreeDecoder().decode(data2)
 je = je.taskDefinition
-
 od = jsontree.jsontree()
 od.containerDefinitions = je.containerDefinitions
-od.networkMode = je.networkMode
+if (je.has_key("networkMode")):
+    od.networkMode = je.networkMode
 od.family = je.family
 od.volumes = je.volumes
 
