@@ -88,7 +88,3 @@ od.containerDefinitions.append(cd)
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsonpickle.encode(od, unpicklable=False))
-
-
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help
