@@ -15,7 +15,8 @@ od.volumes = je.volumes
 
 #pprint(jsontree.JSONTreeEncoder().encode(od))
 
-taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
+taskDefinition = je["taskDefinitionArn"].split("/",1)[1]
+newTaskDefinitionNum = taskDefinition.split(":",1)[1]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsontree.JSONTreeEncoder().encode(od))
