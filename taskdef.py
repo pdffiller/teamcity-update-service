@@ -17,6 +17,7 @@ if len(sys.argv) < 2:
 else:
         number = sys.argv[1]
 
+        
 with open('describe_taskdefinition.json', 'r') as myfile:
     data2=myfile.read().replace('\n', '')
 
@@ -25,14 +26,16 @@ je = je.taskDefinition
 od = jsontree.jsontree()
 od.containerDefinitions = je.containerDefinitions
 if od.containerDefinitions[0].image.rfind(':') > 0 :
-        od.containerDefinitions[0].image = od.containerDefinitions[0].image[0:od.containerDefinitions[0].image$
+        od.containerDefinitions[0].image = od.containerDefinitions[0].image[0:od.containerDefinitions[0].image.rfind(':')+1:] + number
 else:
         od.containerDefinitions[0].image += ':' + number
 
+print number        
+        
 od.family = je.family
 od.volumes = je.volumes
 
-taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"$
+taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
 f = open(fileName,"w")
 f.write(jsontree.JSONTreeEncoder().encode(od))
