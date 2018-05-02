@@ -34,6 +34,7 @@ print number
         
 od.family = je.family
 od.volumes = je.volumes
+od.networkMode = je.networkMode
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
