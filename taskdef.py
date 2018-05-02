@@ -34,10 +34,10 @@ print number
         
 od.family = je.family
 od.volumes = je.volumes
-if isinstance(je.networkMode, basestring) :
-    od.networkMode = je.networkMode
-else:
-    od.networkMode = None
+#if isinstance(je.networkMode, basestring) :
+#    od.networkMode = je.networkMode
+#else:
+#    od.networkMode = None
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
