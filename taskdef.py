@@ -36,6 +36,8 @@ od.family = je.family
 od.volumes = je.volumes
 if isinstance(je.networkMode, basestring) :
     od.networkMode = je.networkMode
+if isinstance(je.taskRoleArn, basestring) :
+    od.taskRoleArn = je.taskRoleArn
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
