@@ -21,6 +21,8 @@ if isinstance(je.networkMode, basestring) :
     od.networkMode = je.networkMode
 if isinstance(je.taskRoleArn, basestring) :
     od.taskRoleArn = je.taskRoleArn
+if isinstance(je.executionRoleArn, basestring) :
+    od.executionRoleArn = je.executionRoleArn
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
