@@ -13,7 +13,8 @@ od = jsontree.jsontree()
 od.containerDefinitions = je.containerDefinitions
 od.containerDefinitions[0].image = od.containerDefinitions[0].image[0:od.containerDefinitions[0].image.rfind(':')+1:] + tag
 
-print tag        
+print tag
+print je.executionRoleArn
         
 od.family = je.family
 od.volumes = je.volumes
@@ -23,6 +24,8 @@ if isinstance(je.taskRoleArn, basestring) :
     od.taskRoleArn = je.taskRoleArn
 if isinstance(je.executionRoleArn, basestring) :
     od.executionRoleArn = je.executionRoleArn
+
+print od.executionRoleArn
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
