@@ -8,6 +8,7 @@ with open('describe_taskdefinition.json', 'r') as myfile:
     data2=myfile.read().replace('\n', '')
 
 je = jsontree.JSONTreeDecoder().decode(data2)
+print je.executionRoleArn
 je = je.taskDefinition
 od = jsontree.jsontree()
 od.containerDefinitions = je.containerDefinitions
