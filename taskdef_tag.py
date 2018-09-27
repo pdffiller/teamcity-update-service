@@ -21,7 +21,8 @@ if isinstance(je.networkMode, basestring) :
     od.networkMode = je.networkMode
 if isinstance(je.taskRoleArn, basestring) :
     od.taskRoleArn = je.taskRoleArn
-od.executionRoleArn = "arn:aws:iam::803913471631:role/DockerAuth"
+if isinstance(je.executionRoleArn, basestring) :
+    od.executionRoleArn = je.executionRoleArn
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
