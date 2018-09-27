@@ -8,7 +8,6 @@ with open('describe_taskdefinition.json', 'r') as myfile:
     data2=myfile.read().replace('\n', '')
 
 je = jsontree.JSONTreeDecoder().decode(data2)
-print je.executionRoleArn
 je = je.taskDefinition
 od = jsontree.jsontree()
 od.containerDefinitions = je.containerDefinitions
@@ -22,6 +21,7 @@ if isinstance(je.networkMode, basestring) :
     od.networkMode = je.networkMode
 if isinstance(je.taskRoleArn, basestring) :
     od.taskRoleArn = je.taskRoleArn
+od.executionRoleArn = "arn:aws:iam::803913471631:role/DockerAuth"
 
 taskDefinition = je["taskDefinitionArn"][je["taskDefinitionArn"].find("/")+1:je["taskDefinitionArn"].rfind(":"):]
 fileName = "describe_taskdefinition_" + taskDefinition + ".json"
